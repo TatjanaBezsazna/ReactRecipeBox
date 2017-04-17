@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var uuid = require('node-uuid');
 
 var RecipeList = require('RecipeList');
+var AddRecipe = require('AddRecipe');
 
 var RecipeApp = React.createClass({
     getInitialState: function() {
@@ -20,6 +21,7 @@ var RecipeApp = React.createClass({
                     name: 'onion', 
                     quantity: 1
                 }], 
+                description: 'not yet maintained',
               onShow: true
             }, {
               id: uuid(),
@@ -33,6 +35,7 @@ var RecipeApp = React.createClass({
                     name: 'onion', 
                     quantity: 1
                 }], 
+                description: 'not yet maintained',
               onShow: false
             }
         ]}
@@ -48,14 +51,31 @@ var RecipeApp = React.createClass({
         
         this.setState({
             recipes: updatedRecipes
-        })
+        });
     }, 
+    
+    handleRecipeAdd: function(recipeName, recipeDescription, ingrArr){
+        var currentRecipes = this.state.recipes;
+        this.setState({
+            recipes: [
+                ...currentRecipes, 
+                {
+                    id: uuid(),
+                    name: recipeName,
+                    ingredients: ingrArr,
+                    description: recipeDescription,
+                    onShow: false
+                }
+            ]
+        });
+    },
     
     render: function() {
         var {recipes} = this.state;
         return(
             <div>
                 <RecipeList recipes={recipes} onToggle={this.handleToggle}/>
+                <AddRecipe onAddRecipe={this.handleRecipeAdd}/>
             </div>
         )
     }

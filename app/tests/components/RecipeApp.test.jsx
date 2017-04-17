@@ -26,4 +26,16 @@ describe('RecipeApp', () => {
         
         expect(recipeApp.state.recipes[0].onShow).toBe(true);
     });
+    
+    it('should add recipe to the recipes state on handleRecipeAdd', () => {
+        var recipeName = 'test text';
+        var recipeApp = TestUtils.renderIntoDocument(<RecipeApp/>);
+        
+        recipeApp.setState({recipes: []});
+        
+        recipeApp.handleRecipeAdd(recipeName, '', []);
+        
+        expect(recipeApp.state.recipes[0].name).toBe(recipeName);
+        expect(recipeApp.state.recipes[0].id).toBeA('string');
+    });
 });
