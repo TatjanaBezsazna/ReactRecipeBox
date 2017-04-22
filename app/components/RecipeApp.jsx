@@ -4,41 +4,14 @@ var uuid = require('node-uuid');
 
 var RecipeList = require('RecipeList');
 var AddRecipe = require('AddRecipe');
+var RecipesAPI = require('RecipesAPI');
+
 
 var RecipeApp = React.createClass({
     getInitialState: function() {
         return {
-            recipes: [
-            {
-              id: uuid(),
-              name: 'Potato salad', 
-              ingredients: [
-                {
-                    name: 'potato', 
-                    quantity: 2
-                },
-                {
-                    name: 'onion', 
-                    quantity: 1
-                }], 
-                description: 'not yet maintained',
-              onShow: true
-            }, {
-              id: uuid(),
-              name: 'Boiled pasta', 
-              ingredients: [
-                {
-                    name: 'pasta', 
-                    quantity: '0,5kg'
-                },
-                {
-                    name: 'onion', 
-                    quantity: 1
-                }], 
-                description: 'not yet maintained',
-              onShow: false
+            recipes: RecipesAPI.getRecipes()
             }
-        ]}
     }, 
     
     handleToggle: function(id) {
@@ -70,7 +43,12 @@ var RecipeApp = React.createClass({
         });
     },
     
+    componentDidUpdate: function() {
+        RecipesAPI.setRecipes(this.state.recipes);
+    },
+
     render: function() {
+        
         var {recipes} = this.state;
         return(
             <div>

@@ -11,7 +11,6 @@ $(document).foundation();
 //App CSS
 require('style!css!sass!applicationStyles');
 
-
 ReactDOM.render(
 	<RecipeApp/>,
 	document.getElementById('app')
