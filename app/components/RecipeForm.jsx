@@ -70,7 +70,7 @@ var RecipeForm = React.createClass({
                         return indredient;
                     })}
                     <textarea placeholder='Description' ref='description'></textarea>
-                    <input type='submit' value='Add recipe'/>
+                    <input type='submit' value='Save'/>
                     <input type='button' value='Add more ingredients' onClick={this.addMoreIngredients}/>
                     <input type='button' value='Cancel' onClick={this.props.handleCancel}/>
                 </form>

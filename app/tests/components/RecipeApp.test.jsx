@@ -54,6 +54,36 @@ describe('RecipeApp', () => {
         expect(recipeApp.state.recipes[0].name).toBe(recipeName);
         expect(recipeApp.state.recipes[0].id).toBeA('string');
     });
+    
+    it('should edit recipe to the recipes state on handleRecipeEdit', () => {
+        var recipes = [
+            {
+                id: 1, 
+                name: 'Something', 
+                ingredients: [],
+                checked: false
+            }, {
+                id: 2, 
+                name: 'Something', 
+                ingredients: [],
+                checked: true
+            }, 
+        ];
+        
+        var recipeApp = TestUtils.renderIntoDocument(<RecipeApp/>);
+        
+        recipeApp.setState({recipes});
+        
+        recipeApp.handleRecipeEdit({
+                id: 2, 
+                name: 'Something new', 
+                ingredients: [],
+                checked: true
+            });
+        
+        expect(recipeApp.state.recipes[1].name).toBe('Something new');
+    });
+    
     it('should delete recipe handleRecipeDelete', () => {
         var recipes = [
             {

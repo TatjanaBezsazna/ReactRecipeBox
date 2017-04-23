@@ -37,8 +37,6 @@ var EditRecipeForm = React.createClass({
             
         };
         
-        console.log(ingrArr);
-        
         var editedRecipe = {
                 ...this.props,
                 name: recipeName,
@@ -49,7 +47,7 @@ var EditRecipeForm = React.createClass({
     },
     
     render: function() {
-        var {id, name, description, ingredients, checked, onShow} = this.props;
+        var {id, name, description, ingredients} = this.props;
         
         var showIngredients = () => {
            return ingredients.map((ingredient, index) => {
