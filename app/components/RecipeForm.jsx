@@ -37,7 +37,13 @@ var RecipeForm = React.createClass({
             }
             
         }
+        
+        if(!recipeName) {
+            this.refs.name.focus();
+        } else {
             this.props.onAddRecipe(recipeName, recipeDescription, ingrArr);
+        }
+            
     },
     
     render: function() {
@@ -66,6 +72,7 @@ var RecipeForm = React.createClass({
                     <textarea placeholder='Description' ref='description'></textarea>
                     <input type='button' value='Add more ingredients' onClick={this.addMoreIngredients}/>
                     <input type='submit' value='Add recipe'/>
+                    <input type='button' value='Cancel' onClick={this.props.handleCancel}/>
                 </form>
             </div>
         )

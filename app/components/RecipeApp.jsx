@@ -40,6 +40,18 @@ var RecipeApp = React.createClass({
         });
     },
     
+    handleRecipeDelete: function() {
+        var updatedRecipes = this.state.recipes;
+        
+        updatedRecipes = updatedRecipes.filter((recipe) => {
+            return !recipe.checked;
+        });
+        
+        this.setState({
+            recipes: updatedRecipes
+        });
+    },
+    
     handleRecipeAdd: function(recipeName, recipeDescription, ingrArr){
         var currentRecipes = this.state.recipes;
         this.setState({
@@ -68,6 +80,9 @@ var RecipeApp = React.createClass({
             <div>
                 <RecipeList recipes={recipes} onToggle={this.handleToggle} onCheck={this.handleCheck}/>
                 <AddRecipe onAddRecipe={this.handleRecipeAdd}/>
+                <div>
+                    <button onClick={this.handleRecipeDelete}>Delete</button>
+                </div>
             </div>
         )
     }

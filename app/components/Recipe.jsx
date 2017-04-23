@@ -21,7 +21,7 @@ var Recipe = React.createClass({
         return (
             <div>
                 <div className='recipe-checkbox'>
-                    <input type='checkbox' checked={checked} onClick={() => {this.props.onCheck(id)}}/>
+                    <input type='checkbox' checked={checked} onChange={() => {this.props.onCheck(id)}}/>
                 </div>
                 <div onClick={() => {this.props.onToggle(id);}} className='recipe-title'>
                     <p>{name}</p>

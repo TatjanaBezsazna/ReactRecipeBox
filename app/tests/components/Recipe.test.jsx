@@ -40,7 +40,7 @@ describe('Recipe', () => {
         var recipe = TestUtils.renderIntoDocument(<Recipe {...recipes} onCheck={spy}/>);
         var $el = $(ReactDOM.findDOMNode(recipe));
         
-        TestUtils.Simulate.click($el.find('.recipe-checkbox > input')[0]);
+        TestUtils.Simulate.change($el.find('.recipe-checkbox > input')[0]);
         
         expect(spy).toHaveBeenCalledWith(11);
     });

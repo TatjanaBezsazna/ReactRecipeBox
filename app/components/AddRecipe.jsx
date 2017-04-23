@@ -28,7 +28,7 @@ var AddRecipe = React.createClass({
         
         var recipeForm = () => {
             if(showForm) {
-              return <RecipeForm onAddRecipe={this.onAddRecipe}/>
+              return <RecipeForm onAddRecipe={this.onAddRecipe} handleCancel={this.handleToggle}/>
             }
             
             return <input type='button' value='Add recipe' onClick={this.handleToggle}/>

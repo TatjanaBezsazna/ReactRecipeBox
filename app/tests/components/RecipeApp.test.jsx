@@ -27,6 +27,22 @@ describe('RecipeApp', () => {
         expect(recipeApp.state.recipes[0].onShow).toBe(true);
     });
     
+    it('should toggle checked value when handleCheck called', () => {
+        var recipeData = {
+            id: 11, 
+            name: 'Something', 
+            ingredients: [],
+            checked: false
+        };
+        
+        var recipeApp = TestUtils.renderIntoDocument(<RecipeApp/>);
+        recipeApp.setState({recipes: [recipeData]});
+        
+        recipeApp.handleCheck(11);
+        
+        expect(recipeApp.state.recipes[0].checked).toBe(true);
+    });
+    
     it('should add recipe to the recipes state on handleRecipeAdd', () => {
         var recipeName = 'test text';
         var recipeApp = TestUtils.renderIntoDocument(<RecipeApp/>);
@@ -37,5 +53,27 @@ describe('RecipeApp', () => {
         
         expect(recipeApp.state.recipes[0].name).toBe(recipeName);
         expect(recipeApp.state.recipes[0].id).toBeA('string');
+    });
+    it('should delete recipe handleRecipeDelete', () => {
+        var recipes = [
+            {
+                id: 1, 
+                name: 'Something', 
+                ingredients: [],
+                checked: false
+            }, {
+                id: 2, 
+                name: 'Something', 
+                ingredients: [],
+                checked: true
+            }, 
+        ];
+        var recipeApp = TestUtils.renderIntoDocument(<RecipeApp/>);
+        
+        recipeApp.setState({recipes});
+        
+        recipeApp.handleRecipeDelete();
+
+        expect(recipeApp.state.recipes.length).toBe(1);
     });
 });
