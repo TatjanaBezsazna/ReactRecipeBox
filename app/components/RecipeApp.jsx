@@ -40,18 +40,6 @@ var RecipeApp = React.createClass({
         });
     },
     
-    handleRecipeDelete: function() {
-        var updatedRecipes = this.state.recipes;
-        
-        updatedRecipes = updatedRecipes.filter((recipe) => {
-            return !recipe.checked;
-        });
-        
-        this.setState({
-            recipes: updatedRecipes
-        });
-    },
-    
     handleRecipeAdd: function(recipeName, recipeDescription, ingrArr){
         var currentRecipes = this.state.recipes;
         this.setState({
@@ -69,6 +57,34 @@ var RecipeApp = React.createClass({
         });
     },
     
+    handleRecipeEdit: function(newRecipe){
+        var currentRecipes = this.state.recipes;
+        
+        var newRecipes = currentRecipes.map((recipe) => {
+            if(recipe.id === newRecipe.id) {
+                recipe = newRecipe;
+            } 
+            
+            return recipe;
+        });
+        
+        this.setState({
+            recipes: newRecipes
+        });
+    },
+    
+    handleRecipeDelete: function() {
+        var updatedRecipes = this.state.recipes;
+        
+        updatedRecipes = updatedRecipes.filter((recipe) => {
+            return !recipe.checked;
+        });
+        
+        this.setState({
+            recipes: updatedRecipes
+        });
+    },
+    
     componentDidUpdate: function() {
         RecipesAPI.setRecipes(this.state.recipes);
     },
@@ -78,10 +94,11 @@ var RecipeApp = React.createClass({
 
         return(
             <div>
-                <RecipeList recipes={recipes} onToggle={this.handleToggle} onCheck={this.handleCheck}/>
+                <h1>Recipe Box</h1>
+                <RecipeList recipes={recipes} onToggle={this.handleToggle} onCheck={this.handleCheck} onRecipeEdit={this.handleRecipeEdit}/>
                 <AddRecipe onAddRecipe={this.handleRecipeAdd}/>
                 <div>
-                    <button onClick={this.handleRecipeDelete}>Delete</button>
+                    <input type='button' value='Delete' onClick={this.handleRecipeDelete}/>
                 </div>
             </div>
         )

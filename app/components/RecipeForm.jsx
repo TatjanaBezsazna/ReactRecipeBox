@@ -29,20 +29,20 @@ var RecipeForm = React.createClass({
             var ingredient = $ingredients[i].childNodes[0].value;
             var quantity = $ingredients[i].childNodes[1].value;
             
-            if(ingredient.length >= 0) {
+            if(ingredient.length > 0) {
                 ingrArr.push({
                     name: ingredient,
                     quantity: quantity
                 });
-            }
+            };
             
-        }
+        };
         
         if(!recipeName) {
             this.refs.name.focus();
         } else {
             this.props.onAddRecipe(recipeName, recipeDescription, ingrArr);
-        }
+        };
             
     },
     
@@ -70,8 +70,8 @@ var RecipeForm = React.createClass({
                         return indredient;
                     })}
                     <textarea placeholder='Description' ref='description'></textarea>
-                    <input type='button' value='Add more ingredients' onClick={this.addMoreIngredients}/>
                     <input type='submit' value='Add recipe'/>
+                    <input type='button' value='Add more ingredients' onClick={this.addMoreIngredients}/>
                     <input type='button' value='Cancel' onClick={this.props.handleCancel}/>
                 </form>
             </div>

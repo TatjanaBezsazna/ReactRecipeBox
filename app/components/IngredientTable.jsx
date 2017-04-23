@@ -1,8 +1,9 @@
 var React = require('react');
 
-var IngredientTable = ({ingredients}) => {
+var IngredientTable = ({id, name, description, ingredients, editable}) => {
     return (
-            <table>
+            <div>
+                <table>
                     <thead>
                         <tr>
                             <th>Ingredient</th>
@@ -20,6 +21,8 @@ var IngredientTable = ({ingredients}) => {
                         })}
                     </tbody>
                 </table>
+                <div>Preparation: {description}</div>
+            </div>
         )
 };
 

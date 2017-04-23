@@ -10,7 +10,7 @@ var RecipeList = React.createClass({
             return recipes.map((recipe, index) => {
                 return (
                     <div>
-                        <Recipe key={recipe.id} {...recipe} onToggle={this.props.onToggle} onCheck={this.props.onCheck}/>
+                        <Recipe key={recipe.id} {...recipe} onToggle={this.props.onToggle} onCheck={this.props.onCheck} onRecipeEdit={(recipe) => {this.props.onRecipeEdit(recipe);}}/>
                     </div>
                 )
             });
