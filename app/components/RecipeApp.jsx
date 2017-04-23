@@ -27,6 +27,19 @@ var RecipeApp = React.createClass({
         });
     }, 
     
+    handleCheck: function(id) {
+      var updatedRecipes = this.state.recipes.map((recipe) => {
+           if(recipe.id === id) {
+               recipe.checked = !recipe.checked;
+           } 
+            return recipe;
+        });
+        
+        this.setState({
+            recipes: updatedRecipes
+        });
+    },
+    
     handleRecipeAdd: function(recipeName, recipeDescription, ingrArr){
         var currentRecipes = this.state.recipes;
         this.setState({
@@ -37,7 +50,8 @@ var RecipeApp = React.createClass({
                     name: recipeName,
                     ingredients: ingrArr,
                     description: recipeDescription,
-                    onShow: false
+                    onShow: false,
+                    checked: false
                 }
             ]
         });
@@ -48,11 +62,11 @@ var RecipeApp = React.createClass({
     },
 
     render: function() {
-        
         var {recipes} = this.state;
+
         return(
             <div>
-                <RecipeList recipes={recipes} onToggle={this.handleToggle}/>
+                <RecipeList recipes={recipes} onToggle={this.handleToggle} onCheck={this.handleCheck}/>
                 <AddRecipe onAddRecipe={this.handleRecipeAdd}/>
             </div>
         )

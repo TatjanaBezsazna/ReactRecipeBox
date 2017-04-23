@@ -7,9 +7,11 @@ var RecipeList = React.createClass({
         var {recipes} = this.props;
         
         var renderRecipes = () => {
-            return recipes.map((recipe) => {
+            return recipes.map((recipe, index) => {
                 return (
-                    <Recipe key={recipe.id} {...recipe} onToggle={this.props.onToggle}/>
+                    <div>
+                        <Recipe key={recipe.id} {...recipe} onToggle={this.props.onToggle} onCheck={this.props.onCheck}/>
+                    </div>
                 )
             });
         };

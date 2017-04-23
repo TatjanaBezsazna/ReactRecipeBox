@@ -1,50 +1,32 @@
 var React = require('react');
 
+var IngredientTable = require('IngredientTable');
+
 var Recipe = React.createClass({
-    
     render: function() {
-        var {id, name, description, ingredients, onShow} = this.props;
+        var {id, name, description, ingredients, checked, onShow} = this.props;
         
-        var showIngredients = () => {
+        var showDetails= () => {
             if(onShow) {
                 return (
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Ingredient</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {ingredients.map((ingredient) => {
-                            return (
-                                <tr>
-                                    <td>{ingredient.name}</td>
-                                    <td>{ingredient.quantity}</td>
-                                </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                );
-            };
-        };
-        
-        var showDescription = () => {
-            if(onShow) {
-                return (
-                    <div>{description}</div>
-                );
+                    <div>
+                        <IngredientTable ingredients={ingredients}/>
+                        <div>Preparation: {description}</div>
+                    </div>
+                    
+                    );
             };
         };
         
         return (
-            <div onClick={() => {
-                    this.props.onToggle(id);
-                }}>
-                <p>{name}</p>
-                {showIngredients()}
-                {showDescription()}
+            <div>
+                <div className='recipe-checkbox'>
+                    <input type='checkbox' checked={checked} onClick={() => {this.props.onCheck(id)}}/>
+                </div>
+                <div onClick={() => {this.props.onToggle(id);}} className='recipe-title'>
+                    <p>{name}</p>
+                </div>
+                    {showDetails()}
             </div>
         )
     }

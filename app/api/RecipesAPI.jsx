@@ -32,7 +32,7 @@ module.exports = {
             return searchText.length === 0 || name.indexOf(searchText) > (-1);
         });
         
-        return filteredTodos;
+        return filteredRecipes;
     }
 };
     

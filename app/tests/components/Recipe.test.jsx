@@ -23,7 +23,24 @@ describe('Recipe', () => {
         var recipe = TestUtils.renderIntoDocument(<Recipe {...recipes} onToggle={spy}/>);
         var $el = $(ReactDOM.findDOMNode(recipe));
         
-        TestUtils.Simulate.click($el[0]);
+        TestUtils.Simulate.click($el.find('.recipe-title')[0]);
+        
+        expect(spy).toHaveBeenCalledWith(11);
+    });
+    
+    it('should call onCheck prop with id on checkbox check', () => {
+        var recipes = {
+            id: 11, 
+            name: 'Something', 
+            ingredients: [],
+            onShow: false
+        };
+        
+        var spy = expect.createSpy();
+        var recipe = TestUtils.renderIntoDocument(<Recipe {...recipes} onCheck={spy}/>);
+        var $el = $(ReactDOM.findDOMNode(recipe));
+        
+        TestUtils.Simulate.click($el.find('.recipe-checkbox > input')[0]);
         
         expect(spy).toHaveBeenCalledWith(11);
     });
