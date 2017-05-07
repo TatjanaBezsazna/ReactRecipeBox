@@ -53,10 +53,13 @@ var RecipeForm = React.createClass({
             var rows = [];
                for(var i = 0; i < ingredientNumber; i++) {
                    rows.push(
-                       <div className='ingredients' key={i}>
-                           <input type='text' placeholder='Ingredient'/>
-                           <input type='text' placeholder='Quantity'/>
-                       </div>
+                        <div  className="medium-8 large-6">
+                           <div key={i} className="ingredients input-icon-wrap">
+                                <span className="input-icon">{i+1}. </span>
+                                <input className="input-with-icon" type='text' placeholder='Ingredient'/>
+                                <input className="input-with-icon" type='text' placeholder='Quantity'/>
+                           </div>   
+                        </div>
                    )
                } 
             return rows;
@@ -69,9 +72,9 @@ var RecipeForm = React.createClass({
                     {inputFileds().map((indredient) => {
                         return indredient;
                     })}
+                    <input type='button' value='Add more ingredients' onClick={this.addMoreIngredients} className="button"/>
                     <textarea placeholder='Description' ref='description'></textarea>
                     <input type='submit' value='Save'/>
-                    <input type='button' value='Add more ingredients' onClick={this.addMoreIngredients}/>
                     <input type='button' value='Cancel' onClick={this.props.handleCancel}/>
                 </form>
             </div>

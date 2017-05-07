@@ -1,0 +1,31 @@
+.input-icon-wrap {
+    
+  border: 1px solid #ddd;    
+  display: flex;
+  margin-bottom: 1rem;
+  
+    .input-icon {
+        background: #ddd;
+    } 
+    
+    .input-with-icon {
+        border: none;
+        margin: 0;
+    }
+    
+    .input-with-icon:last-child {
+        flex: 0 0 100px;
+    }
+    
+    .input-icon, .input-with-icon {
+      padding: 10px;
+    }
+    
+    input, span [type='text'] {
+        height: auto !important;
+    }
+
+}
+
+
+
