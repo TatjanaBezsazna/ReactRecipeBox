@@ -1,16 +1,17 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var uuid = require('node-uuid');
+var {Link} = require('react-router');
 
 var RecipeList = require('RecipeList');
-var AddRecipe = require('AddRecipe');
 var RecipesAPI = require('RecipesAPI');
 
 
 var RecipeApp = React.createClass({
     getInitialState: function() {
         return {
-            recipes: RecipesAPI.getRecipes()
+            recipes: RecipesAPI.getRecipes(),
+            showNewRecipeForm: false
             }
     }, 
     
@@ -57,6 +58,12 @@ var RecipeApp = React.createClass({
         });
     },
     
+    handleHideForm: function() {
+        this.setState({
+            showNewRecipeForm: !this.state.showNewRecipeForm
+        });
+    },
+    
     handleRecipeEdit: function(newRecipe){
         var currentRecipes = this.state.recipes;
         
@@ -93,13 +100,12 @@ var RecipeApp = React.createClass({
         var {recipes} = this.state;
 
         return(
-            <div>
-                <h1>Recipe Box</h1>
-                <RecipeList recipes={recipes} onToggle={this.handleToggle} onCheck={this.handleCheck} onRecipeEdit={this.handleRecipeEdit}/>
-                <AddRecipe onAddRecipe={this.handleRecipeAdd}/>
-                <div>
-                    <input type='button' value='Delete' onClick={this.handleRecipeDelete}/>
-                </div>
+            <div className="container">
+                        <RecipeList recipes={recipes} onToggle={this.handleToggle} onCheck={this.handleCheck} onRecipeEdit={this.handleRecipeEdit}/>
+                        <Link to="/addRecipe" className="button">Add Recipe</Link>
+                    <div>
+                        <input type='button' value='Delete' onClick={this.handleRecipeDelete}/>
+                    </div>
             </div>
         )
     }
