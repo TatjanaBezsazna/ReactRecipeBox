@@ -21,18 +21,18 @@ module.exports = {
         return $.isArray(recipes) ? recipes : [];
     }, 
     
-    filterRecipes: function(recipes, searchText) {
+    filterRecipes: function(recipes, id) {
         var filteredRecipes = recipes;
         
         //Filter by searchText
         filteredRecipes = filteredRecipes.filter((recipes) => {
             
-            var name = recipes.name.toLowerCase();
+            var searchId = recipes.id;
             
-            return searchText.length === 0 || name.indexOf(searchText) > (-1);
+            return searchId == id ;
         });
         
-        return filteredRecipes;
+        return filteredRecipes[0];
     }
 };
     

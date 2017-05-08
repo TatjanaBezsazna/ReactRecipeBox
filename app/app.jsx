@@ -16,8 +16,8 @@ require('style!css!sass!applicationStyles');
 ReactDOM.render(
 	<Router history={hashHistory}>
 		<Route path="/" component={Main}>
-            <h1 className="text-center">Recipe Box</h1>
 			<Route path="addRecipe" component={RecipeForm}/>
+            <Route path="editRecipe" component={RecipeForm}/>
 			<IndexRoute component={RecipeApp}/> 
 		</Route>
 	</Router>,

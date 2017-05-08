@@ -41,42 +41,10 @@ var RecipeApp = React.createClass({
         });
     },
     
-    handleRecipeAdd: function(recipeName, recipeDescription, ingrArr){
-        var currentRecipes = this.state.recipes;
-        this.setState({
-            recipes: [
-                ...currentRecipes, 
-                {
-                    id: uuid(),
-                    name: recipeName,
-                    ingredients: ingrArr,
-                    description: recipeDescription,
-                    onShow: false,
-                    checked: false
-                }
-            ]
-        });
-    },
     
     handleHideForm: function() {
         this.setState({
             showNewRecipeForm: !this.state.showNewRecipeForm
-        });
-    },
-    
-    handleRecipeEdit: function(newRecipe){
-        var currentRecipes = this.state.recipes;
-        
-        var newRecipes = currentRecipes.map((recipe) => {
-            if(recipe.id === newRecipe.id) {
-                recipe = newRecipe;
-            } 
-            
-            return recipe;
-        });
-        
-        this.setState({
-            recipes: newRecipes
         });
     },
     
@@ -103,9 +71,7 @@ var RecipeApp = React.createClass({
             <div className="container">
                         <RecipeList recipes={recipes} onToggle={this.handleToggle} onCheck={this.handleCheck} onRecipeEdit={this.handleRecipeEdit}/>
                         <Link to="/addRecipe" className="button">Add Recipe</Link>
-                    <div>
-                        <input type='button' value='Delete' onClick={this.handleRecipeDelete}/>
-                    </div>
+                        <input type='button' className="button alert" value='Delete selected' onClick={this.handleRecipeDelete}/>
             </div>
         )
     }
