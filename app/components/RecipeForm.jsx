@@ -9,11 +9,11 @@ var RecipeForm = React.createClass({
     getInitialState: function() {
         var id = this.props.location.query.id;
         var recipe = id ? RecipesAPI.filterRecipes(RecipesAPI.getRecipes(), id) : {};
-        
+
         return {
             id: id ? id : null,
             recipe: recipe, 
-            ingredientNumber: recipe.length > 0 ? recipe.ingredients.length : 3
+            ingredientNumber: recipe && recipe.ingredients.length > 0 ? recipe.ingredients.length : 3
         }
     },
     

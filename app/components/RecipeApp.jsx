@@ -68,10 +68,10 @@ var RecipeApp = React.createClass({
         var {recipes} = this.state;
 
         return(
-            <div className="container">
-                        <RecipeList recipes={recipes} onToggle={this.handleToggle} onCheck={this.handleCheck} onRecipeEdit={this.handleRecipeEdit}/>
-                        <Link to="/addRecipe" className="button">Add Recipe</Link>
-                        <input type='button' className="button alert" value='Delete selected' onClick={this.handleRecipeDelete}/>
+            <div>
+                 <RecipeList recipes={recipes} onToggle={this.handleToggle} onCheck={this.handleCheck} onRecipeEdit={this.handleRecipeEdit}/>
+                 <Link to="/addRecipe" className="button">Add Recipe</Link>
+                 <input type='button' className="button alert" value='Delete selected' onClick={this.handleRecipeDelete}/>
             </div>
         )
     }
