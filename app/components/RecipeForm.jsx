@@ -26,8 +26,11 @@ var RecipeForm = React.createClass({
        });
     },
     
-    handleRecipeAdd: function(e) {
+    handleRecipesChange: function(e) {
+        
         e.preventDefault();
+        
+        var id = this.state.recipe.id;
         var recipeName = this.refs.name.value;
         var recipeDescription = this.refs.description.value;
         var $ingredients = $('.ingredients');
@@ -49,9 +52,27 @@ var RecipeForm = React.createClass({
         
         if(!recipeName) {
             this.refs.name.focus();
+            return;
+        } 
+            
+        var currentRecipes = RecipesAPI.getRecipes();
+        var newRecipes;
+        
+        if (id) {
+            newRecipes = currentRecipes.map((recipe) => {
+                if(recipe.id === id) {
+                    recipe = {
+                        ...recipe, 
+                        name: recipeName,
+                        ingredients: ingrArr,
+                        description: recipeDescription,
+                    }
+                }
+                return recipe;
+            });
+            
         } else {
-            var currentRecipes = RecipesAPI.getRecipes();
-            var newRecipes = [
+            newRecipes = [
                 ...currentRecipes, 
                 {
                     id: uuid(),
@@ -61,10 +82,12 @@ var RecipeForm = React.createClass({
                     onShow: false,
                     checked: false
                 }
-            ]
+            ];
+        }
+        
             RecipesAPI.setRecipes(newRecipes);
             window.location.hash = '#/'; 
-        }
+
     },
 
     
@@ -89,7 +112,7 @@ var RecipeForm = React.createClass({
         
         return (
             <div>
-                <form onSubmit={this.handleRecipeAdd}>
+                <form onSubmit={this.handleRecipesChange}>
                     <input type='text' placeholder='Enter your recipe name' ref='name' defaultValue={name}/>
                     {inputFileds(ingredients).map((indredient) => {
                         return indredient;

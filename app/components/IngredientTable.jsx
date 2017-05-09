@@ -1,6 +1,6 @@
 var React = require('react');
 
-var IngredientTable = ({id, name, description, ingredients, editable}) => {
+var IngredientTable = ({ingredients, description}) => {
     return (
             <div>
                 <table>
